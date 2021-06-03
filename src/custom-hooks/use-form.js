@@ -1,7 +1,10 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 const useForm = (options) => {
-    const {defaultValues, onSubmit} = options;
+    const {defaultValues, onSubmit, validate} = options;
     const [values, setValues] = useState(defaultValues);
+    const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    
     const handleChange = (event) => {
         setValues( values => {
             return {
@@ -15,10 +18,17 @@ const useForm = (options) => {
         //     event.preventDefault()
         // }
         event && event.preventDefault();
-        onSubmit();
+        let formErrors = validate(values);
+        setIsSubmitting(true);
+        setErrors(formErrors);
     }
+    useEffect(() => {
+        if(Object.keys(errors).length === 0 && isSubmitting) {
+            onSubmit();
+        }
+    },[errors, isSubmitting])
 
-    return {values, handleChange, handleSubmit}
+    return {values, handleChange, handleSubmit, errors}
 };
 
 export default useForm
