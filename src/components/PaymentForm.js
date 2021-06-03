@@ -1,9 +1,17 @@
 import React from 'react'; 
 import { Input, Button, Label, Form } from './styled-components';
-import useForm from '../custom-hooks/use-form'
+import useForm from '../custom-hooks/use-form'; 
+import calculatePayment from '../utils/calculate-payment';
+
 
 const PaymentForm = (props) => {
-    const onFormSubmit = () => console.log(values);
+    const {setPaymentValue} = props
+    const onFormSubmit = () => {
+        console.log(values);
+        const payment = calculatePayment(values.income, values.payment);
+        setPaymentValue(`$${payment.toFixed(2)}`);
+    }
+    
     const defaultValues = {payment:0, income:0}
     const {values, handleSubmit, handleChange} = useForm({defaultValues, onSubmit: onFormSubmit});
     return (
