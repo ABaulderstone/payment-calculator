@@ -8,7 +8,7 @@ const App = () => {
   const setPaymentValue = (paymentValue) => setPayment(paymentValue)
   return (
     <div style={{display: "flex", flexDirection:"column"}} >
-          <h1 style={{alignSelf:"center"}}>Payment Calculator</h1>
+          <h1 style={{alignSelf:"center", fontSize: "3rem"}}>Payment Calculator</h1>
           <FlexContainer>
             <PaymentForm setPaymentValue={setPaymentValue} />
             <PaymentDisplay payment={payment} />
