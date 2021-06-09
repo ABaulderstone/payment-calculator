@@ -6,6 +6,7 @@ const Button = styled.button`
     margin-top: 10px;
     cursor: pointer;
     border: 2px solid ${props => props.color ? props.color : "#6f03fc"};
+    font-size: 1.5rem;
 
     &:hover {
         background-color:${props => props.color ? props.color : "#6f03fc"} ;
