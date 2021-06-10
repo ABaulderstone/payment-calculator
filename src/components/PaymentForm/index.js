@@ -23,7 +23,8 @@ const PaymentForm = (props) => {
                 setIsStudying(true);
                 setShowToggle(false)
                 break;
-            case "YA": 
+            case "YA":
+                setIsStudying(false); 
                 setShowToggle(true);
                 break;
             default: 
@@ -54,11 +55,11 @@ const PaymentForm = (props) => {
             <Label htmlFor='income'>Income:</Label>
             <Input error={errors.income} id='income' type='text' name="income" value={values.income} onChange={handleChange}/>
             {errors.income && <p style={{color: "red"}}>{errors.income}</p>}
-            {isStudying && <p>Income allowance increased when studying</p>}
+            {isStudying && <p style={{color: "green", fontSize:"1rem"}}>Income allowance increased when studying</p>}
             <Label htmlFor='payment'>Payment:</Label>
             <PaymentSelect options={paymentData} onChange={handleSelect} name="payment" />
             {errors.payment && <p style={{color: "red"}}>{errors.payment}</p>}
-            {showToggle && <Label>Are you studying?</Label>}
+            {showToggle && <Label>Are you studying full time?</Label>}
             {showToggle && <Toggle checked={isStudying} handleToggle={handleToggle} />}
             <Button color="#ffb6c1" type='submit'>Calculate</Button>
         </Form>
