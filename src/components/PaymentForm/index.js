@@ -10,14 +10,10 @@ import PaymentSelect from './PaymentSelect.js'
 
 const PaymentForm = (props) => {
     const {setPaymentValue} = props
-    const onFormSubmit = () => {
-        
-        const payment = calculatePayment(values.income, values.payment);
-        setPaymentValue(`$${payment.toFixed(2)}`);
-    }
+    
     
     const defaultValues = {payment:"", income:"0.00"}
-    const {values, handleSubmit, handleChange, errors} = useForm({defaultValues, onSubmit: onFormSubmit, validate});
+    const {values, handleChange, errors} = useForm({defaultValues, validate});
     const [isStudying, setIsStudying] = useState(false);
     const [showToggle, setShowToggle] = useState(false);
     
@@ -35,10 +31,20 @@ const PaymentForm = (props) => {
                 setShowToggle(false);
         }
     }
+
+    const handleToggle = (event) => {
+        setIsStudying(!isStudying)
+    }
     const handleSelect = (event) => {
         const payment = findById(event.target.selectedIndex, paymentData);
         paymentChangeEffects(payment)
         handleChange(event);
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const payment = calculatePayment(values.income, values.payment, isStudying);
+        setPaymentValue(`$${payment.toFixed(2)}`)
     }
 
 
@@ -53,7 +59,7 @@ const PaymentForm = (props) => {
             <PaymentSelect options={paymentData} onChange={handleSelect} name="payment" />
             {errors.payment && <p style={{color: "red"}}>{errors.payment}</p>}
             {showToggle && <Label>Are you studying?</Label>}
-            {showToggle && <Toggle />}
+            {showToggle && <Toggle checked={isStudying} handleToggle={handleToggle} />}
             <Button color="#ffb6c1" type='submit'>Calculate</Button>
         </Form>
     )
