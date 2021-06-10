@@ -6,7 +6,7 @@ const validate = (values) => {
         errors.income = "Income field cannot be empty"
     }; 
     if(values.payment === "") {
-        errors.payment = "Payment field cannot be empty"
+        errors.payment = "Please select a payment"
     };
     
     if(twoDecimalRegex.test(values.income) === false) {
@@ -14,9 +14,6 @@ const validate = (values) => {
 
     }
 
-    if(twoDecimalRegex.test(values.payment) === false) {
-        errors.payment = "Payment field must be a postive number with up to two decimal places"
-    }
 
     return errors;
 }

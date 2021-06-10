@@ -11,12 +11,12 @@ const StyledOption = styled.option`
 
 const PaymentSelect = (props) => {
         const {options = [], ...rest} = props; 
-        console.log(rest); 
-
+    
 
     return (
         <StyledSelect {...rest}>
-            {options.map( option => <StyledOption value={option.payment}>{option.name}</StyledOption>)}
+            <StyledOption selected disabled hidden value={""}>Select your payment</StyledOption>
+            {options.map( option => <StyledOption paymentType={option.type} key={option._id} value={option.payment}>{option.name}</StyledOption>)}
         </StyledSelect>
     )
 }

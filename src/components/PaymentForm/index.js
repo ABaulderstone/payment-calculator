@@ -10,13 +10,20 @@ import PaymentSelect from './PaymentSelect.js'
 const PaymentForm = (props) => {
     const {setPaymentValue} = props
     const onFormSubmit = () => {
-        console.log(values);
+        
         const payment = calculatePayment(values.income, values.payment);
         setPaymentValue(`$${payment.toFixed(2)}`);
     }
     
-    const defaultValues = {payment:"0.00", income:"0.00"}
+    const defaultValues = {payment:"", income:"0.00"}
     const {values, handleSubmit, handleChange, errors} = useForm({defaultValues, onSubmit: onFormSubmit, validate});
+
+    const handleSelect = (event) => {
+        console.log(event.target.paymentType)
+        handleChange(event);
+    }
+
+
     
     return (
         <Form onSubmit={handleSubmit}>
@@ -24,7 +31,8 @@ const PaymentForm = (props) => {
             <Input error={errors.income} id='income' type='text' name="income" value={values.income} onChange={handleChange}/>
             {errors.income && <p style={{color: "red"}}>{errors.income}</p>}
             <Label htmlFor='payment'>Payment:</Label>
-            <PaymentSelect options={paymentData} onChange={handleChange} name="payment" />
+            <PaymentSelect options={paymentData} onChange={handleSelect} name="payment" />
+            {errors.payment && <p style={{color: "red"}}>{errors.payment}</p>}
             <Button color="#ffb6c1" type='submit'>Calculate</Button>
         </Form>
     )
