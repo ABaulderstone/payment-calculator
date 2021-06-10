@@ -3,6 +3,8 @@ import { Input, Button, Label, Form } from '../styled-components';
 import useForm from '../../custom-hooks/use-form'; 
 import calculatePayment from '../../utils/calculate-payment';
 import validate from './validation-rules';
+import paymentData from '../../data/rates.json'
+import PaymentSelect from './PaymentSelect.js'
 
 
 const PaymentForm = (props) => {
@@ -22,8 +24,7 @@ const PaymentForm = (props) => {
             <Input error={errors.income} id='income' type='text' name="income" value={values.income} onChange={handleChange}/>
             {errors.income && <p style={{color: "red"}}>{errors.income}</p>}
             <Label htmlFor='payment'>Payment:</Label>
-            <Input error={errors.payment}  id='payment' type='text' name="payment" value={values.payment} onChange={handleChange}/>
-            {errors.payment && <p style={{color: "red"}}>{errors.payment}</p>}
+            <PaymentSelect options={paymentData} onChange={handleChange} name="payment" />
             <Button color="#ffb6c1" type='submit'>Calculate</Button>
         </Form>
     )

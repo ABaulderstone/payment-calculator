@@ -1,0 +1,14 @@
+[
+    {"name": "JobSeeker - Single", "payment":"620.80", "type": "JS" },
+    {"name": "JobSeeker - Single, with dependent", "payment":"667.50", "type": "JS" },
+    {"name": "JobSeeker - Partnered", "payment":"565.40", "type": "JS" },
+    {"name": "Austudy - No Children", "payment":"512.50", "type": "AS" },
+    {"name": "Austudy - Single, with children", "payment":"656.00", "type": "AS" },
+    {"name": "Austudy - partnered, with children", "payment":"557.90", "type": "AS" },
+    {"name": "Youth Allowance - Single, no children, 18+, live with parents", "payment":"354.60", "type": "YA" },
+    {"name": "Youth Allowance - Single, no children, 18+, live out of home", "payment":"512.50", "type": "YA" },
+    {"name": "Youth Allowance - Single, with children", "payment":"656.00", "type": "YA" },
+    {"name": "Youth Allowance - Partnered, no children", "payment":"512.50", "type": "YA" },
+    {"name": "Youth Allowance - Partnered, with children ", "payment":"557.90", "type": "YA" }
+   
+]
